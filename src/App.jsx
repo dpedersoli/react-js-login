@@ -1,6 +1,6 @@
 import { login } from './utils';
 import './index.css';
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 // Instruções:
 // * Você tem um formulário de login INCOMPLETO
@@ -17,6 +17,20 @@ import { useState } from "react";
 export default function LoginForm() {
   const [data, setData] = useState({email: "", password: ""});
   const [error, setError] = useState("");
+
+  const handleLogin = useCallback((e, data) => {
+      e.preventDefault();
+      login(data)
+        .then((response) => {
+          if (response.status === 200) {
+          }
+        })
+        .catch((error) => {
+          setError();
+        });
+    },
+    [data]
+  );
 
   return (
     <div className='wrapper'>
@@ -48,8 +62,8 @@ export default function LoginForm() {
 
         <div className='button'>
           {data.password.length < 6 || data.email.length == null
-          ? <button onClick={() => login(data)} disabled={true} style={{cursor: "not-allowed", borderColor: "transparent"}}>Login</button>
-          : <button onClick={() => login(data)} disabled={false}>Login</button>
+          ? <button onClick={handleLogin} disabled={true} style={{cursor: "not-allowed", borderColor: "transparent"}}>Login</button>
+          : <button onClick={handleLogin} disabled={false}>Login</button>
           }
         </div>
       </div>
