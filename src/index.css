@@ -1,3 +1,5 @@
+
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -40,7 +42,6 @@ h1 {
   margin: 0;
   margin-bottom: 30px;
 }
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
